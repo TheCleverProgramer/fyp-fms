@@ -1,0 +1,65 @@
+ @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); 
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  color: #505e79;
+}
+
+body{
+  background-color: #eef1fb;
+}
+
+.banner {
+ 
+  background-image: url('./umt-cover-banner.png');
+
+ 
+  height: 100%; 
+
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h6{
+  font-size: small;
+}
+
+p{
+  font-size: small;
+}
+
+nav {
+  padding: 10px;
+  box-shadow: 0px 0px 5px #888888;
+  background-color: white;
+}
+
+.taskbar{
+  background-color: #fafbfc;
+}
+
+
+
+
+nav a:hover{
+  background-color: #e6effc;
+}
+
+
+.logo-brand {
+  width: 30px;
+  height: 30px;
+}
+
+a{
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #140330;
+  text-decoration: none;
+
+}
