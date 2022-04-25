@@ -1,9 +1,9 @@
-import {Home, Login} from './pages';
+import { Home, Login } from "./pages";
 function App() {
   return (
     <>
-      {/* <Home/> */}
-      <Login/>
+      <Home />
+      {/* <Login/> */}
     </>
   );
 }
