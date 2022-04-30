@@ -1,3 +1,4 @@
-import {default as Navbar} from './navbar';
-import {default as Taskbar} from './taskbar';
-export {Navbar, Taskbar};
+import { default as Navbar } from "./navbar";
+import { default as Taskbar } from "./taskbar";
+import { default as FacultyList } from "./facultyList";
+export { Navbar, Taskbar, FacultyList };
