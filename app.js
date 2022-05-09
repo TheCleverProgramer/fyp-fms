@@ -2,11 +2,13 @@ const express = require("express"),
   bodyparser = require("body-parser"),
   mongoose = require("mongoose"),
   app = express(),
-  facultyRoutes = require("./backend/router/facultyRoutes.js");
+  facultyRoutes = require("./backend/router/facultyRoutes.js"),
+  studentRoutes = require("./backend/router/studentRoutes.js");
 
 app.use(bodyparser.urlencoded({ extended: true }));
 
 app.use("/api/faculty", facultyRoutes);
+app.use("/api/student", studentRoutes);
 
 // app.use((req, res, next) => {
 //   const error = new HttpError("Could not find this route.", 404);

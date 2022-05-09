@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ActivityModal } from "../components";
 import { HiPlusSm } from "react-icons/hi";
+import { CalenderComponent } from "../components/calendar";
 
 const Roadmap = () => {
   const [show, setShow] = useState(false);
@@ -14,8 +15,9 @@ const Roadmap = () => {
             Create new activity
           </button>
         </div>
+        <ActivityModal show={show} setShow={setShow} />
+        <CalenderComponent />
       </div>
-      <ActivityModal show={show} setShow={setShow} />
     </>
   );
 };

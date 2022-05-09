@@ -1,7 +1,7 @@
-const express = require('express')
-      router = express.Router();
-router
-    .get('/login', (req, res)=>res.render('login'))
-    .post();
+const express = require("express"),
+  router = express.Router(),
+  studentController = require("../controllers/studentController.js");
+
+router.route("/getStudents").get(studentController.getStudents);
 
 module.exports = router;
