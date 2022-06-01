@@ -20,6 +20,26 @@ const getFaculty = async (req, res, next) => {
   res.status(201).json(faculty);
 };
 
+const getFacultyById = async (req, res, next) => {
+  let faculty;
+  const {f_id} = req.params;
+  //fetching record
+  try {
+    faculty = await Faculty.findOne({_id: f_id});
+  } catch (err) {
+    const error = new HttpError("Failed to get faculty list. \n" + err, 500);
+    return next(error);
+  }
+  //checking if faculty exists
+  if (!faculty) {
+    const error = new HttpError("No faculty found.", 422);
+    return next(error);
+  }
+  //sending response
+  res.status(201).json(faculty);
+};
+
 module.exports = {
   getFaculty,
+  getFacultyById
 };
