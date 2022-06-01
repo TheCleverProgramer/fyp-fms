@@ -53,7 +53,7 @@ const Home = () => {
               }
             })
             .map((elem) => {
-              return <FacultyList facultyName={elem.name} />;
+              return <FacultyList facultyId={elem._id} facultyName={elem.name} />;
             })}
         </div>
       </div>
