@@ -7,11 +7,10 @@ const login = () => {
         <Navbar/>
         {/* <div className='banner'></div> */}
        <img src={CoverImg} alt=""  style={{position: "absolute", width: "100%", height:"70%", zIndex:"-1"}}/>
-       <div className="d-flex jsutify-content-center">
-         <div classname="row">
-           <div classname="col-6"></div>
-           <div className="col-6 p-5 mt-5 mx-5 rounded" style={{backgroundColor: "white", width: "100%"}}>
-            <form>
+       <div className="d-flex justify-content-around align-items-center my-5">
+            <h1 className="shadow-lg" style={{color: '#f6f6f6'}}>FYP MANAGEMENT SYSTEM</h1>
+            <div className="my-5">
+            <form  className="p-5 rounded" style={{backgroundColor: "#ffff"}}>
               <div className="mb-3">
                 <label for="exampleInputEmail1" className="form-label">Email address</label>
                 <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
@@ -27,11 +26,12 @@ const login = () => {
               </div>
               <button type="submit" className="btn btn-primary w-100">Submit</button>
             </form>
-           </div>
-         </div>
+            </div>
        </div>
+
+
     </>
-  )
+  );
 }
 
 export default login

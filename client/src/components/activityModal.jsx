@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { AutoComplete } from "antd";
+import { HiPlusSm } from "react-icons/hi";
+import { Modal, Button } from 'antd';
 
-const ActivityModal = ({ show, setShow }) => {
+const ActivityModal = () => {
+
   const [students, setStudents] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const getStudents = async () => {
     let response = await fetch("/api/student/getStudents");
@@ -13,28 +17,35 @@ const ActivityModal = ({ show, setShow }) => {
     setStudents(response);
   };
 
+  const addActivity = async () => {
+    let response = await fetch("/api/student/addActivity");
+    return response = await response.json();
+  };
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    addActivity();
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   useEffect(() => {
     getStudents();
   }, []);
-
-  if (!show) {
-    return null;
-  }
   return (
-    <div className="modal-dialog modal-dialog-centered">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h5 className="modal-title">New Activity</h5>
-          <button
-            type="button"
-            className="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-            onClick={() => setShow(false)}
-          ></button>
-        </div>
-        <div className="modal-body">
-          <form>
+    <>
+    <Button type="primary" onClick={showModal}>
+      <HiPlusSm value={{ color: "white" }} size="1.3rem" />
+      Create New Activity
+    </Button>
+    <Modal title="New Activity" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+    <form>
             <div className="mb-3">
               <label className="form-label">Activity Name</label>
               <input type="text" className="form-control" />
@@ -73,24 +84,8 @@ const ActivityModal = ({ show, setShow }) => {
               </div>
             </div>
           </form>
-        </div>
-        <div className="modal-footer">
-          <button
-            type="button"
-            className="btn btn-secondary"
-            data-bs-dismiss="modal"
-            onClick={() => {
-              setShow(false);
-            }}
-          >
-            Close
-          </button>
-          <button type="submit" className="btn btn-primary">
-            Save changes
-          </button>
-        </div>
-      </div>
-    </div>
+    </Modal>
+  </>
   );
 };
 

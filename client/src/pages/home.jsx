@@ -18,13 +18,10 @@ const Home = () => {
     <>
       <Navbar />
       <div className="d-flex justify-content-between px-2">
-        <div
-          className="col-2 md-col-3 py-5"
-          style={{ backgroundColor: "#fafbfc" }}
-        >
-          <Taskbar />
-        </div>
-        <div className="col-7 md-col-5" style={{ backgroundColor: "#fafbfc" }}>
+          <div style={{height: 1000, backgroundColor: '#ffff'}}>
+            <Taskbar />
+          </div>
+        <div className="col-8 md-col-5" style={{ backgroundColor: "#fafbfc" }}>
           <Roadmap />
         </div>
         <div
@@ -36,7 +33,7 @@ const Home = () => {
               type="text"
               name="search"
               className="form-control rounded-pill"
-              placeholder="Search"
+              placeholder="Search faculty"
               onChange={(event) => {
                 setSearch(event.target.value);
               }}
@@ -53,7 +50,7 @@ const Home = () => {
               }
             })
             .map((elem) => {
-              return <FacultyList facultyId={elem._id} facultyName={elem.name} />;
+              return <FacultyList facultyId={elem._id} facultyName={elem.name} facultyImage={elem.image}/>;
             })}
         </div>
       </div>

@@ -5,7 +5,7 @@ const express = require("express"),
   facultyRoutes = require("./backend/router/facultyRoutes.js"),
   studentRoutes = require("./backend/router/studentRoutes.js");
 
-app.use(bodyparser.urlencoded({ extended: true }));
+//app.use(bodyparser.urlencoded({ extended: true }));
 
 app.use("/api/faculty", facultyRoutes);
 app.use("/api/student", studentRoutes);

@@ -12,7 +12,7 @@ const fypSchema = new Schema({
     advisor: {type: Schema.Types.ObjectId, required: true, ref:'Faculty'},
     co_advisor: {type: Schema.Types.ObjectId,  ref:'Faculty'},
     startDate: {type: Date, default: date},
-    startDate: {type: Date}
+    endDate: {type: Date}
 }, {timestamp: true});
 
 fypSchema.plugin(uniqueValidator);
