@@ -16,7 +16,6 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
       <div className="d-flex justify-content-between px-2">
           <div style={{height: 1000, backgroundColor: '#ffff'}}>
             <Taskbar />

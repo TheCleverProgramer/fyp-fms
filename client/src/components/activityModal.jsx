@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { AutoComplete } from "antd";
 import { HiPlusSm } from "react-icons/hi";
 import { Modal, Button } from 'antd';
+import { message } from 'antd';
 
 const ActivityModal = () => {
 
   const [students, setStudents] = useState([]);
+  const [activity, setActivity] = useState({activityName: '', fromDate: '', toDate: '', assignedTo: ''});
   const [isModalVisible, setIsModalVisible] = useState(false);
+
 
   const getStudents = async () => {
     let response = await fetch("/api/student/getStudents");
@@ -17,22 +20,51 @@ const ActivityModal = () => {
     setStudents(response);
   };
 
-  const addActivity = async () => {
-    let response = await fetch("/api/student/addActivity");
-    return response = await response.json();
-  };
-
   const showModal = () => {
     setIsModalVisible(true);
   };
 
-  const handleOk = () => {
-    addActivity();
-    setIsModalVisible(false);
+  const key = 'updatable';
+
+  const openMessage = () => {
+    message.loading({
+      content: 'Loading...',
+      key,
+    });
+    setTimeout(() => {
+      message.success({
+        content: 'Activity created!',
+        key,
+        duration: 2,
+      });
+    }, 1000);
+  };
+
+
+  const handleOk = async () => {
+    let res = await fetch("/api/student/addActivity", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(activity)
+    }); 
+    if(res.status === 201){
+      setIsModalVisible(false);
+      openMessage();
+     }else{
+      message.error('Activity insertion failed!');
+    }
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
+  };
+
+  let name, value;
+  const handleInputs = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+    setActivity({...activity, [name]:value});
+    console.log('Event called by ' + name);
   };
 
   useEffect(() => {
@@ -48,17 +80,35 @@ const ActivityModal = () => {
     <form>
             <div className="mb-3">
               <label className="form-label">Activity Name</label>
-              <input type="text" className="form-control" />
+              <input 
+                type="text"
+                name="activityName" 
+                className="form-control"  
+                value={activity.activityName} 
+                onChange={handleInputs}
+              />
             </div>
             <div className="mb-3">
               <div className="d-flex justify-content-around align-items-center">
                 <div>
                   <label className="form-label">From: </label>
-                  <input type="date" name="fromDate" className="form-control" />
+                  <input 
+                    type="date" 
+                    name="fromDate" 
+                    className="form-control"  
+                    value={activity.fromDate} 
+                    onChange={handleInputs}
+                  />
                 </div>
                 <div>
                   <label className="form-label">To: </label>
-                  <input type="date" name="toDate" className="form-control" />
+                  <input 
+                    type="date" 
+                    name="toDate" 
+                    className="form-control" 
+                    value={activity.toDate} 
+                    onChange={handleInputs}
+                  />
                 </div>
               </div>
             </div>
@@ -70,6 +120,7 @@ const ActivityModal = () => {
                 }}
                 options={students}
                 placeholder="Enter email or name."
+                name="assignedTo"
                 filterOption={(inputValue, student) =>
                   student.name
                     .toUpperCase()
@@ -78,6 +129,7 @@ const ActivityModal = () => {
                     .toUpperCase()
                     .indexOf(inputValue.toUpperCase()) !== -1
                 }
+                onChange={(event, value) => {setActivity({...activity, 'assignedTo': value._id})}}
               />
               <div className="form-text">
                 Enter email or name of the student to assign activity.
@@ -90,3 +142,5 @@ const ActivityModal = () => {
 };
 
 export default ActivityModal;
+
+

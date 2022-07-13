@@ -5,7 +5,7 @@ const
   Activity = require("../models/activity-model.js");
 
 const addActivity = async (req, res, next) => {
-    const {activityName, fromDate, toDate, assignedTo} = req.params;
+    const {activityName, fromDate, toDate, assignedTo} = req.body;
     try{
         const activity = new Activity({
             activityName: activityName,
@@ -18,7 +18,7 @@ const addActivity = async (req, res, next) => {
         const error = new HttpError("Failed to add activity. Internal server error occured.\n" + err, 500);
         return next(error);
     }
-    res.status(201);
+    return res.status(201).send();
 }
 
 module.exports = {

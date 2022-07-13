@@ -65,3 +65,50 @@ a {
 .icons {
   color: #505e79;
 }
+
+
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.image1 {
+  position: relative;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  filter: grayscale(65%);
+  
+}
+.image2 {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  border: 3px solid white ;
+}
+
+#emailStyle a{
+  font-weight: 500;
+  font-size: medium;
+}
+
+#emailStyle a:hover{
+  color: #03a9f4;
+}
+
+#specializationSection{
+  /* border-top: 1px solid rgb(133, 133, 133); */
+}
+
+#specializationSection h5{
+  font-size: 1rem;
+}
+
+#requestSection{
+  background-image: url('/home/ibrahim.ahmed/Documents/fyp/fyp-fms/client/src/assets/sent_request.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 200px;
+  height: 250px;
+
+}

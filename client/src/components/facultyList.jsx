@@ -1,18 +1,9 @@
 import React from 'react';
 import { Avatar, Image } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
-import { IoPersonCircle } from "react-icons/io5";
+import {Link} from 'react-router-dom';
 
 const facultyList = ({ facultyId, facultyName, facultyImage }) => {
 
-  const getFacultyById = async () => {
-    const response = await fetch(`/api/faculty/getFacultyById/${facultyId}`);
-    console.log(await response.json());
-  };
-
-  const clickHandler = () => {
-    getFacultyById();
-  }
 
   return (
     <>
@@ -32,9 +23,12 @@ const facultyList = ({ facultyId, facultyName, facultyImage }) => {
       }
     />
         <div className="w-50">
-          <a href="" className="word-break" onClick={clickHandler}>
+          <Link to={`/facultyProfile/${facultyId}`} 
+                className="word-break"
+                key={facultyId}
+                >
             {facultyName}
-          </a>
+          </Link>
         </div>
       </div>
     </>

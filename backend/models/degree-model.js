@@ -21,4 +21,4 @@ const degreeSchema = new Schema(
 
 degreeSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model("Student", degreeSchema);
+module.exports = mongoose.model("Degree", degreeSchema);

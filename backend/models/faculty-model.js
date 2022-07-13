@@ -15,7 +15,9 @@ const facultySchema = new Schema(
     phd: { type: Schema.Types.ObjectId, ref: "Degree" },
 
     specializations: [{ type: String }],
+    designation: [{type: String}],
     office: { type: String },
+    image: {type: String},
   },
   { timestamp: true }
 );
