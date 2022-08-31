@@ -7,5 +7,6 @@ const express = require("express"),
 router.route("/getStudents").get(studentController.getStudents);
 router.route("/addActivity").post(activityController.addActivity);
 router.route("/getDegreeById/:degreeId").get(degreeController.getDegreeById);
+router.route("/loginstudent/:email/:pwd").post(studentController.loginStudent);
 
 module.exports = router;

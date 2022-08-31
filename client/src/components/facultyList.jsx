@@ -2,9 +2,8 @@ import React from 'react';
 import { Avatar, Image } from 'antd';
 import {Link} from 'react-router-dom';
 
-const facultyList = ({ facultyId, facultyName, facultyImage }) => {
-
-
+const facultyList = ({ facultyId, facultyName, facultyImage}) => {
+  
   return (
     <>
       <div

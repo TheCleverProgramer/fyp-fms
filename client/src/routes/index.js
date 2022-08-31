@@ -1,3 +1,3 @@
-import {Home, FacultyProfile, Login} from '../pages';
+import {HomeStudent,HomeFaculty,  FacultyProfile, Login} from '../pages';
 
-export {Home, FacultyProfile, Login};
+export {HomeStudent, FacultyProfile, HomeFaculty, Login};

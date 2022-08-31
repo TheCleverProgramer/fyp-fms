@@ -2,6 +2,7 @@ const { validationResult } = require("express-validator"),
   HttpError = require("../utils/httpError.js"),
   Faculty = require("../models/faculty-model.js"),
   Degree = require("../models/degree-model.js");
+  bcrypt = require("bcrypt");
 
 const getFaculty = async (req, res, next) => {
   let faculty;
@@ -70,7 +71,36 @@ const getFacultyById = async (req, res, next) => {
     phd: phdDegree.name});
 };
 
+const loginFaculty = async (req, res, next) => {
+  const {email, pwd} = req.params;
+  let faculty;
+  //fetching record
+  try {
+    faculty = await Faculty.findOne({email: email});
+  } catch (err) {
+    const error = new HttpError("Failed to get faculty. " + err, 500);
+    return next(error);
+  }
+  //checking if faculty exists
+  if (!faculty) {
+    const error = new HttpError("No faculty found with this email.", 422);
+    return next(error);
+  }
+  //checking password
+  bcrypt.compare(pwd, faculty.password, function(err, result){
+    if(result == true){
+      //sending response
+      res.status(201).json(faculty);
+    }
+    //sending error
+    const error = new HttpError(`Password for ${email} did not macth.`, 422);
+    return next(error);
+  });
+  
+};
+
 module.exports = {
   getFaculty,
-  getFacultyById
+  getFacultyById,
+  loginFaculty
 };

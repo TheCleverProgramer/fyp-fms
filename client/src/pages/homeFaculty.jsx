@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Taskbar, FacultyList, Roadmap } from "../components";
+import {Taskbar, FacultyList, Projects,  Chat, Requests, Code} from "../components";
+import { useParams } from 'react-router-dom';
 
-const Home = () => {
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:3080");
+
+const HomeFaculty = () => {
+  socket.emit("join_room", "Dr. Syed Muhammad Irteza");
+  // const params = useParams();
   const [faculty, setFaculty] = useState([]);
   const [search, setSearch] = useState("");
+  const [selectedItem, setSelectedItem] = useState(1);
+  const [showChat, setShowChat] = useState(true);
+
 
   const getFaculty = async () => {
     const response = await fetch("/api/faculty/getFaculty");
     setFaculty(await response.json());
   };
+
 
   useEffect(() => {
     getFaculty();
@@ -18,10 +28,10 @@ const Home = () => {
     <>
       <div className="d-flex justify-content-between px-2">
           <div style={{height: 1000, backgroundColor: '#ffff'}}>
-            <Taskbar />
+            <Taskbar selectedItem={selectedItem} setSelectedItem={setSelectedItem} role='faculty'/>
           </div>
         <div className="col-8 md-col-5" style={{ backgroundColor: "#fafbfc" }}>
-          <Roadmap />
+          {selectedItem == 1? <Projects /> : <Requests />}
         </div>
         <div
           className="col-2 md-col-3 py-5"
@@ -53,8 +63,9 @@ const Home = () => {
             })}
         </div>
       </div>
+      <Chat socket={socket} username={global.config.chat.room} room={"Dr. Syed Muhammad Irteza"} showChat={showChat} setShowChat={setShowChat}/>
     </>
   );
 };
 
-export default Home;
+export default HomeFaculty;

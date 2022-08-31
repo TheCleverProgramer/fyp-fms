@@ -17,4 +17,4 @@ const fypSchema = new Schema({
 
 fypSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model("Faculty", fypSchema);    
+module.exports = mongoose.model("FYP", fypSchema);    

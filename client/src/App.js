@@ -1,9 +1,11 @@
 import { Home, Login } from "./pages";
+import { ChatContainer} from "./components";
+import { Chat } from "./components";
+
 function App() {
   return (
     <>
-      <Home />
-      {/* <Login/> */}
+      <Login/>
     </>
   );
 }

@@ -4,5 +4,6 @@ const express = require("express"),
 
 router.route("/getFaculty").get(facultyController.getFaculty);
 router.route("/getFacultyById/:f_id").get(facultyController.getFacultyById);
+router.route("/loginfaculty/:email/:pwd").post(facultyController.loginFaculty);
 
 module.exports = router;
